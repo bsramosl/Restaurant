@@ -2,27 +2,27 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
+import { AppComponent } from './app.component'; 
+import { NavbarComponent } from './pages/navbar/navbar.component';
+import { AddEditMenuComponent } from './pages/add-edit-menu/add-edit-menu.component';
 import { MenuComponent } from './pages/menu/menu.component';
-import { ReservaComponent } from './pages/reserva/reserva.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { DashmenuComponent } from './pages/dashmenu/dashmenu.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
  
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
+    AppComponent, 
+    NavbarComponent,
+    AddEditMenuComponent,
     MenuComponent,
-    ReservaComponent,
-    DashboardComponent,
-    DashmenuComponent,
  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

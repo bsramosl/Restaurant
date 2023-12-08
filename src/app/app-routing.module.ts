@@ -1,22 +1,14 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { RouterModule, Routes } from '@angular/router';  
 import { MenuComponent } from './pages/menu/menu.component';
-import { ReservaComponent } from './pages/reserva/reserva.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { DashmenuComponent } from './pages/dashmenu/dashmenu.component';
+import { AddEditMenuComponent } from './pages/add-edit-menu/add-edit-menu.component';
 
-const routes: Routes = [
+const routes: Routes = [ 
 
-  {path: 'ad-home', component:DashboardComponent},
-  {path: 'ad-menu', component:DashmenuComponent},
-  
-
-
-
-  {path: 'home', component:HomeComponent},
-  {path: 'menu', component:MenuComponent},
-  {path: 'reserva', component:ReservaComponent},
+  {path: 'menu', component:MenuComponent}, 
+  {path: 'add-menu', component:AddEditMenuComponent}, 
+  {path:'edit-menu/:id',component:AddEditMenuComponent},
+ 
 ];
 
 @NgModule({
