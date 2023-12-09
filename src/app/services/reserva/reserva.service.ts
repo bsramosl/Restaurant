@@ -2,23 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { Menu } from '../../models/menu';
+import { Reserva } from '../../models/reserva';
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class MenuService {
-  private myAppUrl: string;
+export class ReservaService { private myAppUrl: string;
   private myApiUrl: string;
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'api/menu'
+    this.myApiUrl = 'api/reserva'
    }
 
-  getList(): Observable<Menu[]> {
-    return this.http.get<Menu[]>(`${this.myAppUrl}${this.myApiUrl}`);
+  getList(): Observable<Reserva[]> {
+    return this.http.get<Reserva[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
   
   delete(id:number): Observable<void>{
@@ -26,16 +24,16 @@ export class MenuService {
 
   }
 
-  save(product: Menu):Observable<void>{
+  save(reserva: Reserva):Observable<void>{
     return this.http.post<void>
-    (`${this.myAppUrl}${this.myApiUrl}`,product)
+    (`${this.myAppUrl}${this.myApiUrl}`,reserva)
   }
 
-  get(id: number): Observable<Menu>{
-    return this.http.get<Menu>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
+  get(id: number): Observable<Reserva>{
+    return this.http.get<Reserva>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
   }
 
-  update(id: number, product: Menu): Observable<void>{
+  update(id: number, product: Reserva): Observable<void>{
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, product)
   }
 }

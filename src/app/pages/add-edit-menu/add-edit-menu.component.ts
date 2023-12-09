@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
-import { Menu } from 'src/app/models/menu';
-import { MenuService } from 'src/app/services/menu/menu.service';
+import { Menu } from 'app/models/menu';
+import { MenuService } from 'app/services/menu/menu.service';
 
 @Component({
   selector: 'app-add-edit-menu',

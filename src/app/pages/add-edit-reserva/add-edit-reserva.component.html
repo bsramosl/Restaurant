@@ -1,0 +1,52 @@
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Menu {{operacion}}</h1>
+        </div>
+        <div class="col-sm-6"> 
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- SELECT2 EXAMPLE -->
+      <div class="card card-default">
+        <div class="card-header"> 
+           
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="row">
+            <form [formGroup]="form" (ngSubmit)="add()">
+                <div *ngFor="let controlName of formControls">
+                  <div class="form-group row">
+                    <label [for]="controlName">{{ controlName | titlecase }}</label>
+                    <input
+                      [type]="inputType[controlName] || 'text'"
+                      class="form-control"
+                      [id]="controlName"
+                      [formControlName]="controlName"
+                    >
+                  </div>
+                </div>
+              
+                <div class="row mt-2 text-center">
+                  <div class="col-lg-6">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                  </div>
+                  <div class="col-lg-6">
+                    <button routerLink="/menu" type="button" class="btn btn-secondary">Cancelar</button>
+                  </div>
+                </div>
+              </form>
+          
+        </div>
+        </div> 
+        </div>
+      </div>
+   
+  </section>
