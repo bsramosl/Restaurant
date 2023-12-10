@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["@types/leaflet"],
     "baseUrl": "./src",
     "paths": {
       "@app/*": ["app/*"]

@@ -1,39 +1,62 @@
-<div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Reserva </h3>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Reserva</h1>
+      </div> 
     </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <button class="btn btn-primary" routerLink="/add-menu">Nuevo</button>
-      <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-        <thead>
-        <tr role="row">
-          <th>Id</th>  
-          <th>Usuario</th>  
-          <th>Menu</th>  
-          <th>Fecha/Hora</th>  
-          <th>Estado</th>  
-          <th>Codigo</th>  
-          <th>Comentario</th>   
-          <th>Opciones</th>  
-        </thead>
-        <tbody>
+  </div><!-- /.container-fluid -->
+</section>
 
-          <tr *ngFor="let item of list" class="table-light">
-            <td>{{item.id_reserva}}</td>
-            <td>{{item.id_usuario}}</td>
-            <td>{{item.id_menu}}</td>
-            <td>{{item.fecha_reserva }}</td>
-            <td>{{item.estado}}</td>
-            <td>{{item.codigo_estado}}</td>
-            <td>{{item.comentario}}</td>  
-            <td>
-              <button routerLink="/edit-reserva/{{item.id_reserva}}" class="btn btn-success btn-sm">Edit</button>
-              <button (click)="delete(item.id_reserva!)" class="btn btn-danger btn-sm ms-2">Delete</button>
-            </td>
-          </tr>         
-        
-        </tbody>     
-      </table>
-    </div>
-</div> 
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12"> 
+        <!-- /.card -->
+        <!-- Horizontal Form -->
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Reserva</h3>
+            <button class="btn btn-primary card-tools" routerLink="/add-reserva">Nuevo</button>
+          </div>
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+              <thead>
+              <tr role="row">
+                <th>Id</th>  
+                <th>Usuario</th>  
+                <th>Menu</th>  
+                <th>Fecha/Hora</th>  
+                <th>Estado</th>  
+                <th>Codigo</th>  
+                <th>Comentario</th>   
+                <th>Opciones</th>  
+              </thead>
+              <tbody>
+      
+                <tr *ngFor="let item of list" class="table-light">
+                  <td>{{item.id_reserva}}</td>
+                  <td>{{item.id_usuario}}</td>
+                  <td>{{item.id_menu}}</td>
+                  <td>{{item.fecha_reserva }}</td>
+                  <td>{{item.estado}}</td>
+                  <td>{{item.codigo_estado}}</td>
+                  <td>{{item.comentario}}</td>  
+                  <td>
+                    <button routerLink="/edit-reserva/{{item.id_reserva}}" class="btn btn-success btn-sm">Edit</button>
+                    <button (click)="delete(item.id_reserva!)" class="btn btn-danger btn-sm ms-2">Delete</button>
+                  </td>
+                </tr>         
+              
+              </tbody>     
+            </table> 
+          </div> 
+        </div> 
+      </div> 
+    </div>     
+  </div><!-- /.container-fluid -->
+</section>
+
+
+ 

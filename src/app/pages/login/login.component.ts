@@ -33,7 +33,7 @@ export class LoginComponent {
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((response) => {
       if (response.success) {
         this.appComponent.showNavbar = true;
-        this.router.navigate(['menu']);     
+        this.router.navigate(['']);     
         const token = response.token;
         // Guarda el token en localStorage
         this.authService.setToken(token);

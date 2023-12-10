@@ -23,21 +23,7 @@ export interface TipoUsuario {
     nombre_ciudad: string;
     id_provincia?: number;
   }
-  
-  // usuario.interface.ts
-  export interface Usuario {
-    id_usuario?: number;
-    usuario: string;
-    contrasena: string;
-    nombre: string;
-    apellido: string;
-    cedula: string;
-    correo: string;
-    direccion: string;
-    telefono: string;
-    id_ciudad?: number;
-    id_tipo_usuario?: number;
-  }
+   
   
   // ubicacion.interface.ts
   export interface Ubicacion {
@@ -47,15 +33,7 @@ export interface TipoUsuario {
     longitud?: number;
   }
   
-  // bar.interface.ts
-  export interface Bar {
-    id_bar?: number;
-    nombre_bar: string;
-    id_ubicacion?: number;
-    desayuno_horario?: string;
-    almuerzo_horario?: string;
-    merienda_horario?: string;
-  }
+ 
   
   // empleado-bar.interface.ts
   export interface EmpleadoBar {

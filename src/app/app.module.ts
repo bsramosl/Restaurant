@@ -12,6 +12,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReservarComponent } from './pages/reservar/reservar.component';
 import { AddEditReservaComponent } from './pages/add-edit-reserva/add-edit-reserva.component';
+import { RegistroComponent } from './pages/registro/registro/registro.component'; 
+import { BarComponent } from './pages/bar/bar.component';
+import { PedidosComponent } from './pages/pedidos/pedidos/pedidos.component';
+import { AddEditBarComponent } from './pages/add-edit-bar/add-edit-bar.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { AddEditUsuariosComponent } from './pages/add-edit-usuarios/add-edit-usuarios.component';
+import { MapComponent } from './pages/map/map.component';
+  
  
 
 @NgModule({
@@ -24,6 +32,14 @@ import { AddEditReservaComponent } from './pages/add-edit-reserva/add-edit-reser
     LoginComponent,
     ReservarComponent,
     AddEditReservaComponent,
+    RegistroComponent,
+    BarComponent,
+    PedidosComponent,
+    AddEditBarComponent,
+    UsuariosComponent,
+    AddEditUsuariosComponent,
+    MapComponent,
+  
  
   ],
   imports: [

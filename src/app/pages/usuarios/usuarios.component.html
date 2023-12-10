@@ -1,0 +1,60 @@
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Reserva</h1>
+        </div> 
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  
+  
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12"> 
+          <!-- /.card -->
+          <!-- Horizontal Form -->
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Reserva</h3>
+              <button class="btn btn-primary card-tools" routerLink="/add-usuario">Nuevo</button>
+            </div>
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                <thead>
+                <tr role="row">
+                  <th>Id</th>  
+                  <th>Usuario</th>  
+                  <th>Nombre</th>  
+                  <th>Apellido</th>  
+                  <th>Cedula</th>  
+                  <th>Correo</th>  
+                  <th>Opciones</th>  
+                </thead>
+                <tbody>
+        
+                  <tr *ngFor="let item of list" class="table-light">
+                    <td>{{item.id_usuario}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.apellido }}</td>
+                    <td>{{item.cedula}}</td>
+                    <td>{{item.correo}}</td> 
+                    <td>
+                      <button routerLink="/edit-usuario/{{item.id_usuario}}" class="btn btn-success btn-sm">Edit</button>
+                      <button (click)="delete(item.id_usuario!)" class="btn btn-danger btn-sm ms-2">Delete</button>
+                    </td>
+                  </tr>         
+                
+                </tbody>     
+              </table> 
+            </div> 
+          </div> 
+        </div> 
+      </div>     
+    </div><!-- /.container-fluid -->
+  </section>
+  
+  
+   

@@ -43,7 +43,7 @@ export class AddEditReservaComponent implements OnInit {
     this.form = this.fb.group(formGroupConfig);
     if (this.id !=0){
       this.operacion = 'Editar '
-      this.getrpoduct(this.id);
+      this.get(this.id);
     }
 
     this.form = this.fb.group({
@@ -57,7 +57,7 @@ export class AddEditReservaComponent implements OnInit {
     });
   }
 
-  getrpoduct(id: number){
+  get(id: number){
     this.loading = true;
     this.reservaService.get(id).subscribe((data:Reserva)=>{
       this.loading = false; 
