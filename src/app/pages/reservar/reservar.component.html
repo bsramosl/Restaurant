@@ -44,8 +44,9 @@
                   <td>{{item.codigo_estado}}</td>
                   <td>{{item.comentario}}</td>  
                   <td>
-                    <button routerLink="/edit-reserva/{{item.id_reserva}}" class="btn btn-success btn-sm">Edit</button>
-                    <button (click)="delete(item.id_reserva!)" class="btn btn-danger btn-sm ms-2">Delete</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm ms-2">Pedido</button>
+                    <button routerLink="/edit-reserva/{{item.id_reserva}}" class="btn btn-success btn-sm ms-2"><i class="fas fa-edit"></i></button>
+                    <button (click)="delete(item.id_reserva!)" class="btn btn-danger btn-sm ms-2"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </td>
                 </tr>         
               
@@ -57,6 +58,23 @@
     </div>     
   </div><!-- /.container-fluid -->
 </section>
-
-
  
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle del Pedido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>

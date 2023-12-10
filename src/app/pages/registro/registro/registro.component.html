@@ -30,16 +30,19 @@
         </div>
         <div class="form-group">  
           <select id="id_pais" class="form-control" formControlName="id_pais">
+            <option value="" disabled selected>--Selecciona un Pais</option>
             <option *ngFor="let pais of paises" [value]="pais.id_pais">{{ pais.nombre_pais }}</option>
           </select>
         </div>
         <div class="form-group">  
           <select id="id_provincia" class="form-control" formControlName="id_provincia">
+            <option value="" disabled selected>--Selecciona una Provincia</option>
             <option *ngFor="let provincia of provincias" [value]="provincia.id_provincia">{{ provincia.nombre_provincia}}</option>
           </select>
         </div>
         <div class="form-group">  
           <select id="id_ciudad" class="form-control" formControlName="id_ciudad">
+            <option value="" disabled selected>--Selecciona una Ciudad</option>
             <option *ngFor="let ciudad of ciudades" [value]="ciudad.id_ciudad">{{ ciudad.nombre_ciudad}}</option>
           </select>
         </div>

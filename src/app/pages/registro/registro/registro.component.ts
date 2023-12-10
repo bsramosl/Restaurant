@@ -17,22 +17,18 @@ export class RegistroComponent {
   provincias: any[] = [];
   ciudades: any[] = [];
 
-  
+  selectedPais!: number; // Cambia el tipo según la estructura de tu modelo de país.
   id: number;
 
   form!: FormGroup;
   formControls: string[] = ['usuario', 'contrasena', 'nombre', 'apellido'
-  , 'cedula', 'correo', 'direccion', 'telefono' ];
+  ,'correo'];
   inputType: { [key: string]: string } = { 
     'usuario': 'text',
     'contrasena': 'password',
     'nombre': 'text',
-    'apellido': 'text' ,
-    'cedula': 'text' ,
-    'correo': 'email',
-    'direccion': 'text',
-    'telefono': 'number',
-    
+    'apellido': 'text' , 
+    'correo': 'email', 
   };
  
  
@@ -49,11 +45,8 @@ export class RegistroComponent {
       usuario: ['', Validators.required],
       contrasena: ['', Validators.required],
       nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      cedula: [''],
-      correo: [''],
-      direccion: [''],
-      telefono: [''], 
+      apellido: ['', Validators.required], 
+      correo: [''], 
       id_tipo_usuario: [1] 
     });
 
@@ -100,8 +93,12 @@ export class RegistroComponent {
 
   loadPaises() {
     this.ubicacionService.getPais().subscribe((paises) => {
-      this.paises = paises;
+      this.paises = [
+        { id_pais: 0, nombre_pais: '--Selecciona un Pais' },
+        ...paises // Agrega el resto de los países al arreglo.
+      ];
     });
+    this.selectedPais = 0;
   }
 
   registerUser() {

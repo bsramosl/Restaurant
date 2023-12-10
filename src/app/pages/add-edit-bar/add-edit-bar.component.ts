@@ -11,10 +11,9 @@ import { BarService } from 'app/services/bar/bar.service';
 })
 export class AddEditBarComponent implements OnInit {
   form!: FormGroup;
-  formControls: string[] = ['nombre_bar', 'id_ubicacion', 'desayuno_horario', 'almuerzo_horario','merienda_horario'];
+  formControls: string[] = ['nombre_bar', 'desayuno_horario', 'almuerzo_horario','merienda_horario'];
   inputType: { [key: string]: string } = { 
     'nombre_bar': 'text',
-    'id_ubicacion': 'text',
     'desayuno_horario': 'text',
     'almuerzo_horario': 'text'  ,
     'merienda_horario': 'text'   
@@ -48,8 +47,7 @@ export class AddEditBarComponent implements OnInit {
 
     this.form = this.fb.group({
       id_bar: ['', Validators.required],
-      nombre_bar: ['', Validators.required],
-      id_ubicacion : ['', Validators.required],
+      nombre_bar: ['', Validators.required],    
       desayuno_horario: ['', Validators.required],
       almuerzo_horario: ['', Validators.required],
       merienda_horario: ['', Validators.required], 
