@@ -20,6 +20,8 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { AddEditUsuariosComponent } from './pages/add-edit-usuarios/add-edit-usuarios.component';
 import { MapComponent } from './pages/map/map.component';
   
+
+import { GoogleMapsModule } from '@angular/google-maps'
  
 
 @NgModule({
@@ -48,6 +50,7 @@ import { MapComponent } from './pages/map/map.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule, 
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

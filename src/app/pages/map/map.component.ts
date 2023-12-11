@@ -34,8 +34,9 @@ export class MapComponent  implements OnInit, AfterViewInit {
         })
       ],
       view: new View({
-        center: [-8860663.03, -237759.60], 
-        zoom: 13
+        center: [-8861349.65, -239383.20], 
+        zoom: 16
+
       })
     });
 

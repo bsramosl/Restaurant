@@ -8,3 +8,17 @@ ejecutar en consola -> ng serve  --->> ver en el servidor en http://localhost:42
 revisar que el servidor este levantado el xampp
 
 ejecutal la api para conexion a base de datos
+
+
+
+
+
+
+
+
+
+
+
+
+
+npm install @angular/google-maps

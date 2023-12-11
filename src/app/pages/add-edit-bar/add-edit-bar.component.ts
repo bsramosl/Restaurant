@@ -47,7 +47,8 @@ export class AddEditBarComponent implements OnInit {
 
     this.form = this.fb.group({
       id_bar: ['', Validators.required],
-      nombre_bar: ['', Validators.required],    
+      nombre_bar: ['', Validators.required],
+      id_ubicacion : ['', Validators.required],
       desayuno_horario: ['', Validators.required],
       almuerzo_horario: ['', Validators.required],
       merienda_horario: ['', Validators.required], 
