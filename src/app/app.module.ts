@@ -19,6 +19,9 @@ import { AddEditBarComponent } from './pages/add-edit-bar/add-edit-bar.component
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { AddEditUsuariosComponent } from './pages/add-edit-usuarios/add-edit-usuarios.component';
 import { MapComponent } from './pages/map/map.component';
+
+import { TableModule } from 'primeng/table';
+
   
 
 import { GoogleMapsModule } from '@angular/google-maps'
@@ -50,7 +53,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule, 
-    GoogleMapsModule
+    GoogleMapsModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

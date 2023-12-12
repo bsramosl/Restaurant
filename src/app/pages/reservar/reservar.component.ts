@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ReservaService } from 'app/services/reserva/reserva.service';
+import { DetallepedidoService } from 'app/services/detallepedido/detallepedido.service';
 import { Reserva } from '../../models/reserva';
+import { DetallePedido } from '@app/models/detallepedido';
 
 @Component({
   selector: 'app-reservar',
@@ -12,9 +14,10 @@ export class ReservarComponent {
   
   
   list: Reserva[] = [];
+  dat: DetallePedido[] = [];
   loading: boolean = false;
 
-  constructor(private ReservaService: ReservaService) { }
+  constructor(private ReservaService: ReservaService,private detpedidoService: DetallepedidoService) { }
 
    
   ngOnInit(): void {
@@ -38,8 +41,12 @@ export class ReservarComponent {
      })
   }
 
-  detalle(){
-    
+  detalle(id:number){
+    this.detpedidoService.get(id).subscribe((data)=>{
+      
+      this.dat = [data];  
+      console.log(this.dat)  
+    })    
   }
 
 }

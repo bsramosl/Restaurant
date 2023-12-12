@@ -65,16 +65,7 @@ export interface TipoUsuario {
     comentario?: string;
   }
   
-  // pedido.interface.ts
-  export interface Pedido {
-    id_pedido?: number;
-    id_usuario?: number;
-    fecha_pedido: Date;
-    estado?: string;
-    codigo_estado?: string;
-    comentario?: string;
-  }
-  
+   
   // detalle-pedido.interface.ts
 export interface DetallePedido {
     id_detalle_pedido?: number;

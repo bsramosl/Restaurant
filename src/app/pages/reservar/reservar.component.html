@@ -21,8 +21,18 @@
             <button class="btn btn-primary card-tools" routerLink="/add-reserva">Nuevo</button>
           </div>
           <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-              <thead>
+
+
+            <p-table
+            [value]="list"
+            [paginator]="true"
+            [rows]="5"
+            [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5, 10, 20]"
+        >
+            <ng-template pTemplate="header">
               <tr role="row">
                 <th>Id</th>  
                 <th>Usuario</th>  
@@ -32,26 +42,25 @@
                 <th>Codigo</th>  
                 <th>Comentario</th>   
                 <th>Opciones</th>  
-              </thead>
-              <tbody>
-      
-                <tr *ngFor="let item of list" class="table-light">
-                  <td>{{item.id_reserva}}</td>
-                  <td>{{item.id_usuario}}</td>
-                  <td>{{item.id_menu}}</td>
-                  <td>{{item.fecha_reserva }}</td>
-                  <td>{{item.estado}}</td>
-                  <td>{{item.codigo_estado}}</td>
-                  <td>{{item.comentario}}</td>  
-                  <td>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm ms-2">Pedido</button>
-                    <button routerLink="/edit-reserva/{{item.id_reserva}}" class="btn btn-success btn-sm ms-2"><i class="fas fa-edit"></i></button>
-                    <button (click)="delete(item.id_reserva!)" class="btn btn-danger btn-sm ms-2"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                  </td>
-                </tr>         
-              
-              </tbody>     
-            </table> 
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr  class="table-light">
+                <td>{{item.id_reserva}}</td>
+                <td>{{item.id_usuario}}</td>
+                <td>{{item.id_menu}}</td>
+                <td>{{item.fecha_reserva }}</td>
+                <td>{{item.estado}}</td>
+                <td>{{item.codigo_estado}}</td>
+                <td>{{item.comentario}}</td>  
+                <td>
+                  <button (click)="detalle(item.id_reserva!)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm ms-2">Pedido</button>
+                  <button routerLink="/edit-reserva/{{item.id_reserva}}" class="btn btn-success btn-sm ms-2"><i class="fas fa-edit"></i></button>
+                  <button (click)="delete(item.id_reserva!)" class="btn btn-danger btn-sm ms-2"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </ng-template> 
+        </p-table>    
           </div> 
         </div> 
       </div> 
@@ -62,13 +71,35 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle del Pedido</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        
+        <table id="detalle" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+          <thead>
+          <tr role="row">
+            <th>Id</th>  
+            <th>Pedido</th>  
+            <th>Menu</th>  
+            <th>Cantidad</th>  
+            <th>Precio Unitario</th>  
+            <th>Subtotal</th> 
+          </thead>
+          <tbody>  
+            <tr *ngFor="let item of dat" class="table-light">
+              <td>{{item.id_detalle_pedido}}</td>
+              <td>{{item.plato}}</td>
+              <td>{{item.nombre_menu}}</td>
+              <td>{{item.cantidad }}</td>
+              <td>{{item.precio_unitario}}$</td>
+              <td>{{item.subtotal}}$</td>
+            </tr>         
+          </tbody>     
+        </table> 
        
       </div>
       <div class="modal-footer">

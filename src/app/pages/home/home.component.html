@@ -7,17 +7,14 @@
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>  
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid"> 
       <div class="row">
         <div class="col-lg-3 col-6">
-          <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
               <h3>150</h3>
-
-              <p>New Orders</p>
+              <p>Reservas</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -25,14 +22,11 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
-          <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
               <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+              <p>Pedidos</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -40,14 +34,11 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
-          <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
               <h3>44</h3>
-
-              <p>User Registrations</p>
+              <p>Usuarios</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -55,14 +46,11 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
-          <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
               <h3>65</h3>
-
-              <p>Unique Visitors</p>
+              <p>Platos</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -70,8 +58,84 @@
             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-      </div>
-      
+      </div>      
     </div><!-- /.container-fluid -->
+    <div class="col-md-12">
+      <p-table [value]="list" 
+      [paginator]="true"
+      [rows]="5"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Usuario</th>
+                <th>Menu</th>
+                <th>Estado</th>
+                <th>Ticket</th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-res>
+            <tr>
+                <td>{{ res.id_reserva }}</td>
+                <td>{{ res.id_usuario }}</td>
+                <td>{{ res.id_menu }}</td> 
+                <td>
+                  <span *ngIf="res.estado === 'Cancelado'" class="badge badge-danger">{{ res.estado }}</span>
+                  <span *ngIf="res.estado === 'Entregado'"class="badge badge-success">{{ res.estado }}</span>
+                  <span *ngIf="res.estado === 'Pendiente'"class="badge badge-success">{{ res.estado }}</span>
+                </td>  
+                <td>{{ res.codigo_estado }}</td> 
+                <td>  <button (click)="detalle(res.id_reserva!)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm ms-2">Pedido</button></td>    
+              
+            </tr>
+        </ng-template>
+    </p-table> 
+    </div>
+   
   </section>
+
+  
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle del Pedido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table id="detalle" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+          <thead>
+          <tr role="row">
+            <th>Id</th>  
+            <th>Pedido</th>  
+            <th>Menu</th>  
+            <th>Cantidad</th>  
+            <th>Precio Unitario</th>  
+            <th>Subtotal</th> 
+          </thead>
+          <tbody>  
+            <tr *ngFor="let item of dat" class="table-light">
+              <td>{{item.id_detalle_pedido}}</td>
+              <td>{{item.plato}}</td>
+              <td>{{item.nombre_menu}}</td>
+              <td>{{item.cantidad }}</td>
+              <td>{{item.precio_unitario}}$</td>
+              <td>{{item.subtotal}}$</td>
+            </tr>         
+          </tbody>     
+        </table> 
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
