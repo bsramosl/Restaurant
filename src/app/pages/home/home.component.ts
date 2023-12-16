@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { ReservaService } from 'app/services/reserva/reserva.service';
-import { DetallepedidoService } from 'app/services/detallepedido/detallepedido.service';
+import { DetallereservaService } from 'app/services/detallereserva/detallereserva.service';
 import { Reserva } from '../../models/reserva';
-import { DetallePedido } from '@app/models/detallepedido';
+import { DetalleReserva } from '@app/models/detallereserva';
+import { MenuService } from '@app/services/menu/menu.service';
+import { UserService } from '@app/services/user/user.service'; 
+
 
 
 @Component({
@@ -13,28 +16,40 @@ import { DetallePedido } from '@app/models/detallepedido';
 
 export class HomeComponent {
   products!: any[];
+  platos : number = 0;
+  users : number = 0;
 
   
   list: Reserva[] = [];
-  dat: DetallePedido[] = [];
+  dat: DetalleReserva[] = [];
   loading: boolean = false;
 
-  constructor(private ReservaService: ReservaService,private detpedidoService: DetallepedidoService) { }
+  constructor(private ReservaService: ReservaService,
+    private detallereservaService: DetallereservaService,
+    private menuService: MenuService,
+    private userService: UserService) { }
 
    
   ngOnInit(): void {
+    this.menuService.getList().subscribe((data)=>{  
+      this.platos = data.length;              
+    })   
+    this.userService.getList().subscribe((data)=>{  
+      this.users = data.length;              
+    })    
+
     this.getList();   
   }
 
   getList(){
     this.ReservaService.getList().subscribe((data: Reserva[])=>{
       this.list = data;
+      console.log(data)
     }) 
   }
 
   detalle(id:number){
-    this.detpedidoService.get(id).subscribe((data)=>{
-      
+    this.detallereservaService.get(id).subscribe((data)=>{      
       this.dat = [data];  
       console.log(this.dat)  
     })    

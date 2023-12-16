@@ -1,5 +1,5 @@
-export interface DetallePedido {
-  id_detalle_pedido: number;
+export interface DetalleReserva {
+  id_detalle_reserva: number;
   id_pedido: number;
   id_menu: number;
   cantidad: number;

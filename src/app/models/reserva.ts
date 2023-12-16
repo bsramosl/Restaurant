@@ -63,6 +63,7 @@ export interface TipoUsuario {
     estado?: string;
     codigo_estado?: string;
     comentario?: string;
+    usuario?: string;
   }
   
    
