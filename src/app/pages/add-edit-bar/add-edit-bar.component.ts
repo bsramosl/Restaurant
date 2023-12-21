@@ -52,6 +52,18 @@ export class AddEditBarComponent implements OnInit {
       desayuno_horario: ['', Validators.required],
       almuerzo_horario: ['', Validators.required],
       merienda_horario: ['', Validators.required], 
+      latitud:[''],
+      longitud:[''],
+    });
+
+    this.barService.getCoordinates().subscribe(coordinates => {
+      if (coordinates) {
+        // Actualizar el formulario con las coordenadas recibidas
+        this.form.patchValue({
+          latitud: coordinates.latitud,
+          longitud: coordinates.longitud,
+        });
+      }
     });
   }
 
@@ -59,26 +71,18 @@ export class AddEditBarComponent implements OnInit {
     this.loading = true;
     this.barService.get(id).subscribe((data:Bar)=>{
       this.loading = false; 
-      console.log(data);
-      this.form.setValue(data)
-    })
-    
+    })    
   } 
 
-
   add(){ 
-
     const bar = this.form.value;
-
     this.loading = true;
-
     if(this.id !==0){    
       console.log(bar)
       this.barService.update(this.id, bar).subscribe(()=>{       
         this.loading = false;  
         this.router.navigate(['bar']); 
-      })
-      
+      })      
     }else{
       this.barService.save(bar).subscribe(()=>{
         this.loading = false;    
@@ -87,6 +91,5 @@ export class AddEditBarComponent implements OnInit {
     }) 
     }   
     this.loading = false;      
-
   }
 }

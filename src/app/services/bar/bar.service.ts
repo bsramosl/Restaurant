@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { Bar } from '../../models/bar';
 
@@ -8,6 +8,8 @@ import { Bar } from '../../models/bar';
   providedIn: 'root'
 })
 export class BarService {
+  private coordinatesSubject = new BehaviorSubject<{ latitud: number, longitud: number } | null>(null);
+
   private myAppUrl: string;
   private myApiUrl: string;
 
@@ -15,6 +17,16 @@ export class BarService {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/bar'
    }
+
+
+   sendCoordinates(coordinates: { latitud: number, longitud: number }) {
+     this.coordinatesSubject.next(coordinates);
+   }
+ 
+   getCoordinates(): Observable<{ latitud: number, longitud: number } | null> {
+     return this.coordinatesSubject.asObservable();
+   }
+
 
   getList(): Observable<Bar[]> {
     return this.http.get<Bar[]>(`${this.myAppUrl}${this.myApiUrl}`);

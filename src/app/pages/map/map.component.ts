@@ -11,6 +11,7 @@ import { Style, Icon } from 'ol/style';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Geometry } from 'ol/geom';
+import { BarService } from '@app/services/bar/bar.service';
 
 @Component({
   selector: 'app-map',
@@ -21,6 +22,11 @@ export class MapComponent  implements OnInit, AfterViewInit {
   map!: Map;
   vectorSource!: VectorSource<Feature<Geometry>>;
   vectorLayer!: VectorLayer<VectorSource<Feature<Geometry>>>;
+
+
+  constructor(private bar:BarService){}
+
+
   ngOnInit() {}
 
   ngAfterViewInit() {
@@ -68,6 +74,8 @@ export class MapComponent  implements OnInit, AfterViewInit {
 
     // Imprimir las coordenadas en la consola (puedes hacer algo más útil aquí)
     console.log('Ubicación seleccionada:', coordinatesString); 
+    
+    this.bar.sendCoordinates({ latitud: coordinates[1], longitud: coordinates[0] });
     // Limpiar marcadores anteriores
     this.vectorSource.clear(); 
     // Crear un nuevo marcador en la ubicación seleccionada
