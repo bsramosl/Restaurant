@@ -27,23 +27,28 @@ export class LoginComponent {
   }
   
 
-  login() {
-    console.log(this.form.value)
-
+  login() { 
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((response) => {
       if (response.success) {
-        this.appComponent.showNavbar = true;
-        this.router.navigate(['']);     
+        this.appComponent.showNavbar = true;            
         const token = response.token;
         // Guarda el token en localStorage
         this.authService.setToken(token);
         // Recupera información del usuario (puedes ajustar según tu API)
         const user = {
-          userId: response.user.userId,
-          usuario: response.user.username,
+          userId: response.user.id_usuario,
+          usuario: response.user.usuario,
+          tipo_usuario:response.user.nombre_tipo_usuario,
+          id_tipo_usuario:response.user.id_tipo_usuario
         }; 
         // Almacena el usuario en el servicio
-        this.userService.setCurrentUser(user); 
+        this.userService.setCurrentUser(user);
+        if(user.tipo_usuario == 'Empleado' || user.tipo_usuario == 'Administrador'){
+          this.router.navigate(['']); 
+        }else{
+          this.authService.logout();
+        }
+
       } else {
         console.log('Login failed', response.message);
       }

@@ -12,6 +12,9 @@ import { BarComponent } from './pages/bar/bar.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { AddEditBarComponent } from './pages/add-edit-bar/add-edit-bar.component';
 import { AddEditUsuariosComponent } from './pages/add-edit-usuarios/add-edit-usuarios.component';
+import { EmpleadoComponent } from './pages/empleado/empleado.component';
+import { AddEditEmpleadoComponent } from './pages/add-edit-empleado/add-edit-empleado.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [ 
 
@@ -19,6 +22,7 @@ const routes: Routes = [
 
   {path: 'login', component:LoginComponent}, 
   {path: 'registro', component:RegistroComponent},
+  {path: 'perfil', component:PerfilComponent},
 
   {path: 'usuario', component:UsuariosComponent,canActivate: [AuthGuard]}, 
   {path: 'add-usuario', component:AddEditUsuariosComponent,canActivate: [AuthGuard]}, 
@@ -35,6 +39,10 @@ const routes: Routes = [
   {path: 'bar', component:BarComponent,canActivate: [AuthGuard]}, 
   {path: 'add-bar', component:AddEditBarComponent,canActivate: [AuthGuard]}, 
   {path:'edit-bar/:id',component:AddEditBarComponent,canActivate: [AuthGuard]},
+
+  {path: 'empleado', component:EmpleadoComponent,canActivate: [AuthGuard]}, 
+  {path: 'add-empleado', component:AddEditEmpleadoComponent,canActivate: [AuthGuard]}, 
+  {path:'edit-empleado/:id',component:AddEditEmpleadoComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({

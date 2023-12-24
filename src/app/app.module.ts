@@ -24,7 +24,10 @@ import { TableModule } from 'primeng/table';
 
   
 
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { EmpleadoComponent } from './pages/empleado/empleado.component';
+import { AddEditEmpleadoComponent } from './pages/add-edit-empleado/add-edit-empleado.component';
+import { PerfilComponent } from './pages/perfil/perfil.component'
  
 
 @NgModule({
@@ -44,6 +47,9 @@ import { GoogleMapsModule } from '@angular/google-maps'
     UsuariosComponent,
     AddEditUsuariosComponent,
     MapComponent,
+    EmpleadoComponent,
+    AddEditEmpleadoComponent,
+    PerfilComponent,
   
  
   ],

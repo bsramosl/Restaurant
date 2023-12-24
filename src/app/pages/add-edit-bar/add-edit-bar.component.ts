@@ -67,17 +67,28 @@ export class AddEditBarComponent implements OnInit {
     });
   }
 
-  getrpoduct(id: number){
+  getrpoduct(id: number) {
     this.loading = true;
-    this.barService.get(id).subscribe((data:Bar)=>{
+    this.barService.get(id).subscribe((data: Bar) => {
       this.loading = false; 
-    })    
-  } 
+      if ('latitud' in data && 'longitud' in data) {
+        this.form.patchValue({
+          latitud: data.latitud,
+          longitud: data.longitud,
+        });
+      }  
+      this.form.setValue({
+        ...data, 
+        latitud: this.form.value.latitud,
+        longitud: this.form.value.longitud,
+      });
+    });
+  }
 
   add(){ 
     const bar = this.form.value;
     this.loading = true;
-    if(this.id !==0){    
+    if(this.id !== 0){    
       console.log(bar)
       this.barService.update(this.id, bar).subscribe(()=>{       
         this.loading = false;  

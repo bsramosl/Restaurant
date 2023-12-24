@@ -49,6 +49,7 @@ export class UserService {
 
   getCurrentUser(): any {
     const userString = localStorage.getItem(this.currentUserKey);
+    console.log(userString)
     return userString ? JSON.parse(userString) : null;
   }
 

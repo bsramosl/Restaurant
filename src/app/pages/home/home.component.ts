@@ -21,7 +21,7 @@ export class HomeComponent {
 
   
   list: Reserva[] = [];
-  dat: DetalleReserva[] = [];
+  dat: any  = [];
   loading: boolean = false;
 
   constructor(private ReservaService: ReservaService,
@@ -37,21 +37,19 @@ export class HomeComponent {
     this.userService.getList().subscribe((data)=>{  
       this.users = data.length;              
     })    
-
     this.getList();   
   }
 
   getList(){
     this.ReservaService.getList().subscribe((data: Reserva[])=>{
       this.list = data;
-      console.log(data)
     }) 
   }
 
   detalle(id:number){
-    this.detallereservaService.get(id).subscribe((data)=>{      
-      this.dat = [data];  
-      console.log(this.dat)  
+    this.detallereservaService.get(id).subscribe((data)=>{  
+      this.dat = data;  
+      console.log(this.dat)
     })    
   }
 }
