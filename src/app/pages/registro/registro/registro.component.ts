@@ -47,7 +47,7 @@ export class RegistroComponent {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required], 
       correo: [''], 
-      id_tipo_usuario: [1] 
+      id_tipo_usuario: 1
     });
 
     const formGroupConfig: { [key: string]: any } = {};

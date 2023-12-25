@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from '@app/app.component';
+import { MensajeService } from '@app/services/mensaje/mensaje.service';
 import { UserService } from '@app/services/user/user.service';
 import {AuthService } from 'app/services/auth/auth.service';
 
@@ -17,7 +18,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,private appComponent: AppComponent,
     private router: Router,private authService: AuthService,
-    private userService: UserService) {
+    private userService: UserService,private mensajeService: MensajeService) {
     // Ocultar el navbar cuando se carga la página de inicio de sesión
     this.appComponent.showNavbar = false;
     this.form = this.fb.group({
@@ -49,9 +50,15 @@ export class LoginComponent {
           this.authService.logout();
         }
 
-      } else {
+      }else {
+        this.mensajeService.showAlert('Error', 'Usuario o Contraseña Incorrectos','error');
         console.log('Login failed', response.message);
       }
+    },
+    (error) => {
+      // Manejar el error aquí
+      console.error('Error en la solicitud de inicio de sesión:', error);
+      this.mensajeService.showAlert('Error', 'Hubo un error en la solicitud de inicio de sesión', 'error');
     });
   }
   

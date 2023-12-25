@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BarService } from 'app/services/bar/bar.service';
 import { Bar } from '../../models/bar';
+import { MensajeService } from '@app/services/mensaje/mensaje.service';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
@@ -11,7 +12,7 @@ export class BarComponent {
   list: Bar[] = [];
   loading: boolean = false;
 
-  constructor(private barService: BarService) { }
+  constructor(private barService: BarService,private mensajeService: MensajeService,) { }
 
    
   ngOnInit(): void {
@@ -29,10 +30,19 @@ export class BarComponent {
   }
  
   deleteProduct(id: number){
-    this.loading = true;
-     this.barService.delete(id).subscribe(()=>{
-       this.getListProducts() 
-     })
+    this.barService.delete(id).subscribe(
+      () => {
+        // Aquí se ejecuta después de la eliminación exitosa
+        this.getListProducts();
+        
+        // Mostrar el SweetAlert después de la eliminación exitosa
+        this.mensajeService.showAlert('Eliminado', 'Eliminado exitosamente', 'success')
+      },
+      (error) => { 
+        // Mostrar SweetAlert de error
+        this.mensajeService.showAlert('Error', 'Error al eliminar el empleado', 'error');
+      }
+    );
   }
 
 }

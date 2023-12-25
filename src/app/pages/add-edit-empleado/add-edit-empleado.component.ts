@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmpleadoBar } from '@app/models/empleado';
 import { Usuario } from '@app/models/usuarios';
 import { EmpleadoService } from '@app/services/empleado/empleado.service';
+import { MensajeService } from '@app/services/mensaje/mensaje.service';
 import { UserService } from '@app/services/user/user.service';
+
 
 @Component({
   selector: 'app-add-edit-empleado',
@@ -23,7 +25,7 @@ export class AddEditEmpleadoComponent implements OnInit {
     private empleadoService: EmpleadoService,
     private router: Router,
     private userService: UserService, // Agrega este servicio
-
+    private mensajeService: MensajeService,
     private aRouter: ActivatedRoute
   ) {
     this.form = this.fb.group({
@@ -69,10 +71,11 @@ export class AddEditEmpleadoComponent implements OnInit {
       this.form.patchValue({
         nombre: selectedUser.nombre,
         apellido: selectedUser.apellido,
+        usuario: selectedUser.usuario,
         // Agrega más campos según sea necesario
       });
-    } else {
-      console.log('Usuario no encontrado en la lista');
+    } else {    
+      this.mensajeService.showAlert('Error', 'Usuario no encontrado en la lista', 'error');    
     }
   }
 
@@ -82,13 +85,15 @@ export class AddEditEmpleadoComponent implements OnInit {
     if (this.id !== 0) {
       this.empleadoService.update(this.id, menu).subscribe(() => {
         this.loading = false;
-        this.router.navigate(['empledo']);
+        this.mensajeService.showAlert('Exito', 'Empleado editado', 'success');    
+        this.router.navigate(['empleado']);
       });
     } else {
       this.empleadoService.save(menu).subscribe(() => {
         this.loading = false;
         this.loading = false;
-        this.router.navigate(['empledo']);
+        this.mensajeService.showAlert('Exito', 'Empleado agregado', 'success');   
+        this.router.navigate(['empleado']);
       });
     }
     this.loading = false;

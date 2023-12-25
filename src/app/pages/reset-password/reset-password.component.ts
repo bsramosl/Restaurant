@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/services/auth/auth.service';
 import { AppComponent } from '@app/app.component';
+import { MensajeService } from '@app/services/mensaje/mensaje.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ResetPasswordComponent implements OnInit {
   token: string='';
   newPassword: string='';
 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router,
+  constructor(private mensajeService: MensajeService,private route: ActivatedRoute, private authService: AuthService, private router: Router,
     private appComponent: AppComponent) {
       this.appComponent.showNavbar = false;
     }
@@ -31,14 +32,15 @@ export class ResetPasswordComponent implements OnInit {
       (response) => {
         if (response.success) {
           // Redirigir a la página de inicio de sesión o a la página deseada
+          this.mensajeService.showAlert('Exito', response.message, 'success');
           this.router.navigate(['/login']);
         } else {
           // Manejar errores o mostrar mensajes de error
-          console.log('Error al cambiar la contraseña:', response.message);
+          this.mensajeService.showAlert('Exito', 'Error al cambiar la contraseña:', 'success');
         }
       },
       (error) => {
-        console.error('Error en la solicitud:', error);
+        this.mensajeService.showAlert('Error', 'Error en la solicitud:', 'error'); 
       }
     );
   }

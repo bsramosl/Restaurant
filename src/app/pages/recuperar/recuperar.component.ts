@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@app/services/auth/auth.service';
 import { AppComponent } from '@app/app.component';
+import { MensajeService } from '@app/services/mensaje/mensaje.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AppComponent } from '@app/app.component';
 export class RecuperarComponent {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService,private appComponent: AppComponent) {
+  constructor(private mensajeService: MensajeService,private fb: FormBuilder, private authService: AuthService,private appComponent: AppComponent) {
     this.appComponent.showNavbar = false;
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -23,10 +24,11 @@ export class RecuperarComponent {
     const email = this.form.value.email;
     this.authService.requestPasswordReset(email).subscribe(
       (response) => {
-        console.log('Password reset request successful', response);
+        this.mensajeService.showAlert('Exito', response.message, 'success');
       },
       (error) => {
-        console.error('Password reset request failed', error);
+        this.mensajeService.showAlert('Error', 'No se encuentra correo electronico registrado', 'error');
+        console.error('Password reset request failed', error.message);
       }
     );
   }

@@ -14,7 +14,7 @@ export class ReservarComponent {
   
   
   list: Reserva[] = [];
-  dat: DetalleReserva[] = [];
+  dat: any = [];
   loading: boolean = false;
 
   constructor(private ReservaService: ReservaService,private detallereservaService: DetallereservaService) { }
@@ -44,7 +44,7 @@ export class ReservarComponent {
   detalle(id:number){
     this.detallereservaService.get(id).subscribe((data)=>{
       
-      this.dat = [data];  
+      this.dat = data;  
       console.log(this.dat)  
     })    
   }

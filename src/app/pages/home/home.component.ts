@@ -5,6 +5,7 @@ import { Reserva } from '../../models/reserva';
 import { DetalleReserva } from '@app/models/detallereserva';
 import { MenuService } from '@app/services/menu/menu.service';
 import { UserService } from '@app/services/user/user.service'; 
+import { BarService } from '@app/services/bar/bar.service';
 
 
 
@@ -18,6 +19,7 @@ export class HomeComponent {
   products!: any[];
   platos : number = 0;
   users : number = 0;
+  bar : number = 0;
 
   
   list: Reserva[] = [];
@@ -26,6 +28,7 @@ export class HomeComponent {
 
   constructor(private ReservaService: ReservaService,
     private detallereservaService: DetallereservaService,
+    private barService: BarService,
     private menuService: MenuService,
     private userService: UserService) { }
 
@@ -36,6 +39,9 @@ export class HomeComponent {
     })   
     this.userService.getList().subscribe((data)=>{  
       this.users = data.length;              
+    })    
+    this.barService.getList().subscribe((data)=>{  
+      this.bar = data.length;              
     })    
     this.getList();   
   }
