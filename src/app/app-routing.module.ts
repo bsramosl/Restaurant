@@ -15,6 +15,8 @@ import { AddEditUsuariosComponent } from './pages/add-edit-usuarios/add-edit-usu
 import { EmpleadoComponent } from './pages/empleado/empleado.component';
 import { AddEditEmpleadoComponent } from './pages/add-edit-empleado/add-edit-empleado.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { RecuperarComponent } from './pages/recuperar/recuperar.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 const routes: Routes = [ 
 
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path: 'login', component:LoginComponent}, 
   {path: 'registro', component:RegistroComponent},
   {path: 'perfil', component:PerfilComponent},
+  {path: 'recuperar',component:RecuperarComponent},
+  {path: 'reset-password',component:ResetPasswordComponent},
 
   {path: 'usuario', component:UsuariosComponent,canActivate: [AuthGuard]}, 
   {path: 'add-usuario', component:AddEditUsuariosComponent,canActivate: [AuthGuard]}, 

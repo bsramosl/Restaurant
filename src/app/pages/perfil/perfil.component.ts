@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EmpleadoService } from '@app/services/empleado/empleado.service';
 import { UserService } from '@app/services/user/user.service';
 
@@ -12,9 +13,11 @@ export class PerfilComponent implements OnInit {
   user: any;
   empleado: any = [];
   form!: FormGroup;
+  id: number = 0;
 
-  constructor(private userService: UserService,
-    private empeadoService: EmpleadoService,private fb: FormBuilder) {}
+
+  constructor(private userService: UserService,private router: Router,
+    private fb: FormBuilder) {}
 
   ngOnInit(): void { 
 
@@ -32,14 +35,19 @@ export class PerfilComponent implements OnInit {
     id_tipo_usuario: ['']
   });
     this.user = this.userService.getCurrentUser(); 
-    console.log(this.user); 
     this.userService.get(this.user.userId).subscribe(data => {
       this.form.setValue(data)   
+      this.id=this.user.userId;
     });
   }
 
-  getUser(): any {
-
+  add(){ 
+    const user = this.form.value;
+    if(this.id !==0){    
+      this.userService.update(this.id, user).subscribe(()=>{       
+        this.router.navigate(['perfil']); 
+      })
+    } 
   }
 
 }

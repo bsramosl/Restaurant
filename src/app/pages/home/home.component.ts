@@ -49,7 +49,6 @@ export class HomeComponent {
   detalle(id:number){
     this.detallereservaService.get(id).subscribe((data)=>{  
       this.dat = data;  
-      console.log(this.dat)
     })    
   }
 }
