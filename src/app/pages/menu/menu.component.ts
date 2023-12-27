@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuService } from 'app/services/menu/menu.service';
 import { Menu } from '../../models/menu';
+import { UserService } from '@app/services/user/user.service';
 
 
 @Component({
@@ -10,14 +11,15 @@ import { Menu } from '../../models/menu';
 })
 export class MenuComponent {
 
-  
+  user: any;
   list: Menu[] = [];
   loading: boolean = false;
 
-  constructor(private menuService: MenuService) { }
+  constructor(private menuService: MenuService,private userService: UserService) { }
 
    
   ngOnInit(): void {
+    this.user = this.userService.getCurrentUser(); 
     this.getListProducts();   
   }
 

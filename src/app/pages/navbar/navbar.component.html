@@ -45,8 +45,8 @@
               </p>
             </a> 
           </li> 
-          <li class="nav-item">
-            <a routerLink="/usuario" class="nav-link">
+          <li class="nav-item" *ngIf="user.tipo_usuario=='Administrador'">
+            <a routerLink="/usuario" class="nav-link" >
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Usuario
@@ -54,7 +54,7 @@
               </p>
             </a> 
           </li> 
-          <li class="nav-item" *ngIf="user.tipo_usuario=='Administrador'">
+          <li class="nav-item" >
             <a routerLink="/menu" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
