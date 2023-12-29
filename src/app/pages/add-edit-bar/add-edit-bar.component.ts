@@ -54,6 +54,7 @@ export class AddEditBarComponent implements OnInit {
       merienda_horario: ['', Validators.required], 
       latitud:[''],
       longitud:[''],
+      imagen:['']
     });
 
     this.barService.getCoordinates().subscribe(coordinates => {
@@ -76,25 +77,38 @@ export class AddEditBarComponent implements OnInit {
           latitud: data.latitud,
           longitud: data.longitud,
         });
-      }  
+        this.cordenadas(data.longitud,data.latitud) 
+      }         
+     
       this.form.setValue({
         ...data, 
         latitud: this.form.value.latitud,
         longitud: this.form.value.longitud,
-      });
-    });
+      });    
+      
+      
+    });      
   }
+
+  cordenadas(longitud:any,latitud:any){
+    const coordinates = {
+      latitud: longitud,
+      longitud: latitud,
+    }; 
+    this.barService.sendCoordinates(coordinates);
+  }
+  
 
   add(){ 
     const bar = this.form.value;
     this.loading = true;
-    if(this.id !== 0){    
-      console.log(bar)
+    if(this.id !== 0){   
+      console.log(this.form.value)
       this.barService.update(this.id, bar).subscribe(()=>{       
         this.loading = false;  
         this.router.navigate(['bar']); 
       })      
-    }else{
+    }else{ 
       this.barService.save(bar).subscribe(()=>{
         this.loading = false;    
         this.loading = false;  
@@ -102,5 +116,14 @@ export class AddEditBarComponent implements OnInit {
     }) 
     }   
     this.loading = false;      
+  }
+
+  handleImageUpload(event: any) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.form.patchValue({
+        imagen: file.name
+      });  
+    }
   }
 }

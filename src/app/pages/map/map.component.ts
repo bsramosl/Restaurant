@@ -12,6 +12,7 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Geometry } from 'ol/geom';
 import { BarService } from '@app/services/bar/bar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -22,9 +23,18 @@ export class MapComponent  implements OnInit, AfterViewInit {
   map!: Map;
   vectorSource!: VectorSource<Feature<Geometry>>;
   vectorLayer!: VectorLayer<VectorSource<Feature<Geometry>>>;
+  coordinatesSubscription: Subscription;
+  cordenadas:any;
 
 
-  constructor(private bar:BarService){}
+
+  constructor(private bar:BarService){
+    this.coordinatesSubscription = this.bar.getCoordinates().subscribe(coordinates => {
+      if (coordinates) {
+        this.edicioncordenadas(coordinates);
+      }
+    });
+  }
 
 
   ngOnInit() {}
@@ -33,7 +43,8 @@ export class MapComponent  implements OnInit, AfterViewInit {
     this.initializeMap();
   }
 
-  initializeMap() {
+  initializeMap() { 
+
     this.vectorSource = new VectorSource<Feature<Geometry>>();
     this.vectorLayer = new VectorLayer({
       source: this.vectorSource,
@@ -86,5 +97,19 @@ export class MapComponent  implements OnInit, AfterViewInit {
     this.vectorSource.addFeature(marker);
 
     // Puedes realizar otras acciones aquí, como enviar las coordenadas al formulario, etc.
+  }
+
+  edicioncordenadas(coordinates: { latitud: number; longitud: number }){
+    console.log('Nuevas coordenadas recibidas:', coordinates);
+    this.cordenadas = coordinates;
+    this.vectorSource.clear(); 
+    // Crear un nuevo marcador en la ubicación seleccionada
+    const marker = new Feature({
+    geometry: new Point(fromLonLat([coordinates.latitud, coordinates.longitud], 'EPSG:4326')),
+  });
+  
+    // Agregar el marcador a la capa de vectores
+    this.vectorSource.addFeature(marker);
+
   }
 }

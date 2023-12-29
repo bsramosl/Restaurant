@@ -15,7 +15,7 @@
       <div class="col-md-12"> 
         <!-- /.card -->
         <!-- Horizontal Form -->
-        <div class="card card-info">
+        <div class="card card-success">
           <div class="card-header">
             <h3 class="card-title">Menu</h3>
             <button class="btn btn-primary card-tools" routerLink="/add-menu">Nuevo</button>
@@ -44,7 +44,7 @@
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>
-              <tr  class="table-light" *ngIf="item.id_bar == user.id_bar">
+              <tr  class="table-light" *ngIf="(item.id_bar == user.id_bar) || (user.tipo_usuario == 'Administrador')">
                 <td>{{item.id_menu}}</td>
                 <td>{{item.id_bar}}</td>
                 <td>{{item.nombre_menu }}</td>

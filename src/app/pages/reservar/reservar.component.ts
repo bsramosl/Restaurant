@@ -28,7 +28,6 @@ export class ReservarComponent {
     this.loading = true;
     this.ReservaService.getList().subscribe((data: Reserva[])=>{
       this.list = data;
-      console.log(data);
       this.loading = false;
     })
 
@@ -43,9 +42,7 @@ export class ReservarComponent {
 
   detalle(id:number){
     this.detallereservaService.get(id).subscribe((data)=>{
-      
       this.dat = data;  
-      console.log(this.dat)  
     })    
   }
 
