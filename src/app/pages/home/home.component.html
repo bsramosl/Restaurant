@@ -86,7 +86,10 @@
                   <span *ngIf="res.estado === 'Pendiente'"class="badge badge-success">{{ res.estado }}</span>
                 </td>  
                 <td>{{ res.codigo_estado }}</td> 
-                <td>  <button (click)="detalle(res.id_reserva!)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm ms-2">Pedido</button></td>    
+                <td>  <button (click)="detalle(res.id_reserva!)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info btn-sm ms-2">Pedido</button>
+                  <button *ngIf="res.estado === 'Pendiente'" (click)="cancelar(res)" class="btn btn-danger btn-sm ms-2">Cancelar</button>
+                  <button *ngIf="res.estado === 'Pendiente'" (click)="entregado(res)" class="btn btn-success btn-sm ms-2 ">Entregado</button>
+                </td>       
               
             </tr>
         </ng-template>

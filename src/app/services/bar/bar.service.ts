@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
@@ -37,16 +37,34 @@ export class BarService {
 
   }
 
-  save(product: Bar):Observable<void>{
-    return this.http.post<void>
-    (`${this.myAppUrl}${this.myApiUrl}`,product)
+  // save(product: Bar):Observable<void>{
+  //   return this.http.post<void>
+  //   (`${this.myAppUrl}${this.myApiUrl}`,product)
+  // }
+
+  save(product: Bar,  image: File): Observable<void> {
+    const formData = new FormData();
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('imagen', image);
+
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, formData);
   }
 
   get(id: number): Observable<Bar>{
     return this.http.get<Bar>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
   }
 
-  update(id: number, product: Bar): Observable<void>{
-    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, product)
+  update(id: number, product: Bar,image: File): Observable<void>{
+    const formData = new FormData();
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('nombre_bar', product.nombre_bar);
+    formData.append('imagen', image);
+    console.log(formData);
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, formData)
   }
 }

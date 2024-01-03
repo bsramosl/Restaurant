@@ -3,6 +3,8 @@ import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { Bar } from 'app/models/bar';
 import { BarService } from 'app/services/bar/bar.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser'; // Asegúrate de importar DomSanitizer
+
 
 @Component({
   selector: 'app-add-edit-bar',
@@ -26,7 +28,8 @@ export class AddEditBarComponent implements OnInit {
 
   constructor(private fb: FormBuilder,private barService : BarService,
     private router: Router,
-    private aRouter: ActivatedRoute){ 
+    private aRouter: ActivatedRoute,
+    private sanitizer: DomSanitizer){ 
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
   }
 
@@ -49,12 +52,13 @@ export class AddEditBarComponent implements OnInit {
       id_bar: ['', Validators.required],
       nombre_bar: ['', Validators.required],
       id_ubicacion : ['', Validators.required],
+      nombre_ubicacion:[''],
       desayuno_horario: ['', Validators.required],
       almuerzo_horario: ['', Validators.required],
       merienda_horario: ['', Validators.required], 
       latitud:[''],
       longitud:[''],
-      imagen:['']
+      imagen:[null]
     });
 
     this.barService.getCoordinates().subscribe(coordinates => {
@@ -101,17 +105,17 @@ export class AddEditBarComponent implements OnInit {
 
   add(){ 
     const bar = this.form.value;
+    const imageFile = this.form.get('imagen')?.value;
     this.loading = true;
     if(this.id !== 0){   
       console.log(this.form.value)
-      this.barService.update(this.id, bar).subscribe(()=>{       
+      this.barService.update(this.id, bar,imageFile).subscribe(()=>{       
         this.loading = false;  
         this.router.navigate(['bar']); 
       })      
     }else{ 
-      this.barService.save(bar).subscribe(()=>{
+      this.barService.save(bar,imageFile).subscribe(()=>{
         this.loading = false;    
-        this.loading = false;  
         this.router.navigate(['bar']); 
     }) 
     }   
@@ -122,8 +126,9 @@ export class AddEditBarComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.form.patchValue({
-        imagen: file.name
-      });  
+        imagen: file,
+      });
     }
   }
+ 
 }

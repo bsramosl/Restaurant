@@ -29,6 +29,8 @@ import { AddEditEmpleadoComponent } from './pages/add-edit-empleado/add-edit-emp
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { RecuperarComponent } from './pages/recuperar/recuperar.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component'
+import { BufferToImagePipe } from 'app/pages/buffer-to-image.pipe'
+
  
 
 @NgModule({
@@ -52,6 +54,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     PerfilComponent,
     RecuperarComponent,
     ResetPasswordComponent,
+    BufferToImagePipe,
   
  
   ],
@@ -62,7 +65,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     HttpClientModule,
     FormsModule, 
     GoogleMapsModule,
-    TableModule
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

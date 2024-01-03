@@ -57,4 +57,23 @@ export class HomeComponent {
       this.dat = data;  
     })    
   }
+
+  cancelar(reserva: Reserva){
+    console.log(reserva);
+    reserva.estado = 'Cancelado'
+      const idReserva = reserva.id_reserva ?? -1;
+      this.ReservaService.updateestado(idReserva, reserva).subscribe(() => {
+        this.getList();
+      });      
+  }
+
+  entregado(reserva: Reserva){
+    console.log(reserva);
+    reserva.estado = 'Entregado'
+      const idReserva = reserva.id_reserva ?? -1;
+      this.ReservaService.updateestado(idReserva, reserva).subscribe(() => {
+        this.getList();
+      });
+      
+  }
 }

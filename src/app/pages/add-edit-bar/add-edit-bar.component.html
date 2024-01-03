@@ -20,7 +20,7 @@
             <h3 class="card-title">{{ operacion }}</h3>
           </div>
           <div class="card-body">
-            <form [formGroup]="form" (ngSubmit)="add()">
+            <form [formGroup]="form" (ngSubmit)="add()"  enctype="multipart/form-data">
               <div *ngFor="let controlName of formControls">
                 <div class="form-group row">
                   <label [for]="controlName">{{
@@ -47,7 +47,7 @@
                     <label class="custom-file-label">
                       {{ form.get('imagen')?.value || 'Choose file' }}
                     </label>
-                  </div>
+                  </div>               
                 </div>
               </div>
 
