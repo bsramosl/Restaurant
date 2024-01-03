@@ -19,6 +19,7 @@ export class AddEditEmpleadoComponent implements OnInit {
   id: number;
   operacion: string = 'Agregar ';
   usuarios: Usuario[] = [];
+  user: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +41,7 @@ export class AddEditEmpleadoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.userService.getCurrentUser();
     this.getUsuarios();
     if (this.id != 0) {
       this.operacion = 'Editar ';
@@ -81,6 +83,7 @@ export class AddEditEmpleadoComponent implements OnInit {
 
   add() {
     const menu = this.form.value;
+    this.form.value.id_bar = this.user.id_bar;
     this.loading = true;
     if (this.id !== 0) {
       this.empleadoService.update(this.id, menu).subscribe(() => {

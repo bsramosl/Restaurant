@@ -26,16 +26,26 @@ export class MenuService {
 
   }
 
-  save(product: Menu):Observable<void>{
-    return this.http.post<void>
-    (`${this.myAppUrl}${this.myApiUrl}`,product)
+  save(product: Menu,image: File):Observable<void>{
+    const formData = new FormData();
+    formData.append('imagen', image);
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, formData);
   }
+ 
 
   get(id: number): Observable<Menu>{
     return this.http.get<Menu>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
   }
 
-  update(id: number, product: Menu): Observable<void>{
-    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, product)
+  update(id: number, product: Menu,image: File): Observable<void>{
+    const formData = new FormData();
+    formData.append('id_bar', product.id_bar.toString());
+    formData.append('nombre_menu', product.nombre_menu);
+    formData.append('plato', product.plato);
+    formData.append('descripcion', product.descripcion);
+    formData.append('precio', product.precio.toString());
+    formData.append('estado', product.estado); 
+    formData.append('imagen', image);
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, formData)
   }
 }
