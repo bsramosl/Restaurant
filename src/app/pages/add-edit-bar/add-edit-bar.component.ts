@@ -49,16 +49,16 @@ export class AddEditBarComponent implements OnInit {
     }
 
     this.form = this.fb.group({
-      id_bar: ['', Validators.required],
+      id_bar: [''],
       nombre_bar: ['', Validators.required],
-      id_ubicacion : ['', Validators.required],
+      id_ubicacion : [''],
       nombre_ubicacion:[''],
       desayuno_horario: ['', Validators.required],
       almuerzo_horario: ['', Validators.required],
       merienda_horario: ['', Validators.required], 
-      latitud:[''],
-      longitud:[''],
-      imagen:[null]
+      latitud:['', Validators.required],
+      longitud:['', Validators.required],
+      imagen:[null, Validators.required]
     });
 
     this.barService.getCoordinates().subscribe(coordinates => {
@@ -88,9 +88,7 @@ export class AddEditBarComponent implements OnInit {
         ...data, 
         latitud: this.form.value.latitud,
         longitud: this.form.value.longitud,
-      });    
-      
-      
+      });  
     });      
   }
 
