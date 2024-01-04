@@ -6,6 +6,7 @@ import { DetalleReserva } from '@app/models/detallereserva';
 import { MenuService } from '@app/services/menu/menu.service';
 import { UserService } from '@app/services/user/user.service'; 
 import { BarService } from '@app/services/bar/bar.service';
+import { Subscription, interval } from 'rxjs';
 
 
 
@@ -26,6 +27,9 @@ export class HomeComponent {
   dat: any  = [];
   loading: boolean = false;
 
+  
+  private tiempoRestanteSub: Subscription = new Subscription();
+
   constructor(private ReservaService: ReservaService,
     private detallereservaService: DetallereservaService,
     private barService: BarService,
@@ -44,12 +48,40 @@ export class HomeComponent {
       this.bar = data.length;              
     })    
     this.getList();   
+    this.tiempoRestanteSub = interval(60000).subscribe(() => {
+      this.actualizarTiempoRestante();
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Desinscribirse del temporizador al destruir el componente
+    if (this.tiempoRestanteSub) {
+      this.tiempoRestanteSub.unsubscribe();
+    }
   }
 
   getList(){
     this.ReservaService.getList().subscribe((data: Reserva[])=>{
       this.list = data;
+      this.actualizarTiempoRestante(); 
     }) 
+  }
+
+  private actualizarTiempoRestante() {
+    const ahora = new Date();
+
+    this.list.forEach(reserva => {
+        const fechaReserva = new Date(reserva.fecha_reserva);
+        const diferenciaEnMilisegundos = ahora.getTime() - fechaReserva.getTime();
+        const tiempoRestante = Math.max(30 - Math.floor(diferenciaEnMilisegundos / (1000 * 60)), 0);    
+        // Actualizar el tiempo restante para la reserva actual
+        reserva.tiempoRestante = tiempoRestante;
+       // Actualizar el tiempo restante para la reserva actual
+      reserva.tiempoRestante = tiempoRestante;
+      if (tiempoRestante <= 0) {
+        this.proceso30min(reserva);
+      }
+    });
   }
 
   detalle(id:number){
@@ -76,4 +108,18 @@ export class HomeComponent {
       });
       
   }
+
+  private proceso30min(reserva: Reserva) {
+    console.log(reserva)
+    if (reserva.estado == 'Pendiente'){ 
+      reserva.estado = 'Cancelado'
+      const idReserva = reserva.id_reserva ?? -1;
+      this.ReservaService.updateestado(idReserva, reserva).subscribe(() => {
+        this.getList();
+      });
+    }
+    // Lógica para realizar el proceso después de 30 minutos
+   
+  }
+
 }
