@@ -38,9 +38,7 @@ export class AddEditBarComponent implements OnInit {
 
     this.formControls.forEach(control => {
       formGroupConfig[control] = [''];
-    });
-
-    this.form = this.fb.group(formGroupConfig);
+    });  
 
     this.form = this.fb.group(formGroupConfig);
     if (this.id !=0){
@@ -58,7 +56,7 @@ export class AddEditBarComponent implements OnInit {
       merienda_horario: ['', Validators.required], 
       latitud:['', Validators.required],
       longitud:['', Validators.required],
-      imagen:[null, Validators.required]
+      imagen:['', Validators.required]
     });
 
     this.barService.getCoordinates().subscribe(coordinates => {
@@ -82,8 +80,8 @@ export class AddEditBarComponent implements OnInit {
           longitud: data.longitud,
         });
         this.cordenadas(data.longitud,data.latitud) 
-      }         
-     
+      }   
+
       this.form.setValue({
         ...data, 
         latitud: this.form.value.latitud,
@@ -105,8 +103,9 @@ export class AddEditBarComponent implements OnInit {
     const bar = this.form.value;
     const imageFile = this.form.get('imagen')?.value;
     this.loading = true;
+    console.log(bar)
+    return
     if(this.id !== 0){   
-      console.log(this.form.value)
       this.barService.update(this.id, bar,imageFile).subscribe(()=>{       
         this.loading = false;  
         this.router.navigate(['bar']); 

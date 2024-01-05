@@ -28,6 +28,12 @@ export class MenuService {
 
   save(product: Menu,image: File):Observable<void>{
     const formData = new FormData();
+    formData.append('id_bar', product.id_bar.toString());
+    formData.append('nombre_menu', product.nombre_menu);
+    formData.append('plato', product.plato);
+    formData.append('descripcion', product.descripcion);
+    formData.append('precio', product.precio.toString());
+    formData.append('estado', product.estado); 
     formData.append('imagen', image);
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, formData);
   }
