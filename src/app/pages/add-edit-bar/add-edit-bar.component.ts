@@ -56,7 +56,7 @@ export class AddEditBarComponent implements OnInit {
       merienda_horario: ['', Validators.required], 
       latitud:['', Validators.required],
       longitud:['', Validators.required],
-      imagen:['', Validators.required]
+      imagen:['',]
     });
 
     this.barService.getCoordinates().subscribe(coordinates => {
@@ -102,9 +102,7 @@ export class AddEditBarComponent implements OnInit {
   add(){ 
     const bar = this.form.value;
     const imageFile = this.form.get('imagen')?.value;
-    this.loading = true;
-    console.log(bar)
-    return
+    this.loading = true;  
     if(this.id !== 0){   
       this.barService.update(this.id, bar,imageFile).subscribe(()=>{       
         this.loading = false;  
