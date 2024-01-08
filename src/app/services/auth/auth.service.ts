@@ -44,6 +44,7 @@ export class AuthService {
 
   clearSession(): void {
     localStorage.removeItem('token');
+    localStorage.clear();  
     this.userService.clearCurrentUser();
   } 
 

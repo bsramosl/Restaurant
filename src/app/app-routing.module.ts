@@ -24,7 +24,7 @@ const routes: Routes = [
 
   {path: 'login', component:LoginComponent}, 
   {path: 'registro', component:RegistroComponent},
-  {path: 'perfil', component:PerfilComponent},
+  {path: 'perfil', component:PerfilComponent,canActivate: [AuthGuard]},
   {path: 'recuperar',component:RecuperarComponent},
   {path: 'reset-password',component:ResetPasswordComponent},
 

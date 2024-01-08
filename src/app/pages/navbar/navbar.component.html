@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a routerLink="/"  class="brand-link">
-      <img src="assets/icon/restaurant_Unemi.png"  style="height:40px;width:230px;" alt="AdminLTE Logo">
+      <img src="assets/icon/restaurant_Unemi.png"  style="height:55px;width:230px;" alt="AdminLTE Logo">
     </a> 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -20,7 +20,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a routerLink="/perfil" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-user-circle"></i>
               <p>
                 Perfil
                 <i class="fas fa-angle-left right"></i>
@@ -29,7 +29,7 @@
           </li> 
           <li class="nav-item" *ngIf="user.tipo_usuario=='Administrador'">
             <a routerLink="/bar" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-home"></i>
               <p>
                 Bar
                 <i class="fas fa-angle-left right"></i>
@@ -38,7 +38,7 @@
           </li> 
           <li class="nav-item" *ngIf="user.tipo_usuario=='Administrador'">
             <a routerLink="/empleado" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Empleados
                 <i class="fas fa-angle-left right"></i>
@@ -47,7 +47,7 @@
           </li> 
           <li class="nav-item" *ngIf="user.tipo_usuario=='Administrador'">
             <a routerLink="/usuario" class="nav-link" >
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuario
                 <i class="fas fa-angle-left right"></i>
@@ -56,7 +56,7 @@
           </li> 
           <li class="nav-item" >
             <a routerLink="/menu" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-bars"></i>
               <p>
                 Menu
                 <i class="fas fa-angle-left right"></i>

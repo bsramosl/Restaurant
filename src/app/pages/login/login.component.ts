@@ -15,6 +15,8 @@ import {AuthService } from 'app/services/auth/auth.service';
 export class LoginComponent {
  
   form: FormGroup;
+  showPassword: boolean = false;
+
 
   constructor(private fb: FormBuilder,private appComponent: AppComponent,
     private router: Router,private authService: AuthService,
@@ -28,6 +30,11 @@ export class LoginComponent {
   }
   
 
+  
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   login() { 
     this.authService.login(this.form.value.username, this.form.value.password).subscribe((response) => {
       if (response.success) {
@@ -36,12 +43,13 @@ export class LoginComponent {
         // Guarda el token en localStorage
         this.authService.setToken(token);
         // Recupera información del usuario (puedes ajustar según tu API)
-        const user = {
+         const user = {
           userId: response.user.id_usuario,
           usuario: response.user.usuario,
           tipo_usuario:response.user.nombre_tipo_usuario,
           id_tipo_usuario:response.user.id_tipo_usuario,
-          id_bar:response.user.id_bar
+          id_bar:response.user.id_bar,
+          nombre_bar:response.user.nombre_del_bar
         }; 
         // Almacena el usuario en el servicio
         this.userService.setCurrentUser(user);

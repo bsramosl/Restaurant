@@ -46,8 +46,7 @@ export class RegistroComponent {
       contrasena: ['', Validators.required],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required], 
-      correo: [''], 
-      id_tipo_usuario: 1
+      correo: [''],      
     });
 
     const formGroupConfig: { [key: string]: any } = {};
@@ -102,12 +101,12 @@ export class RegistroComponent {
   }
 
   registerUser() {
-    console.log(this.form.value)
     if (this.form.valid) {
       const user = this.form.value;
       delete user.id_pais;
       delete user.id_provincia;
       user.id_ciudad = this.form.value.id_ciudad; // Asigna la ciudad seleccionada 
+      user.id_tipo_usuario = 1;
       // Llama al servicio para registrar al usuario
       this.userService.registerUser(user).subscribe(
         (response) => {
