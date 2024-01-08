@@ -20,6 +20,10 @@ export class MenuService {
   getList(): Observable<Menu[]> {
     return this.http.get<Menu[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
+
+  getListBar(id: number): Observable<Menu>{
+    return this.http.get<Menu>(`${this.myAppUrl}${this.myApiUrl}/bar/${id}`)
+  }
   
   delete(id:number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`)

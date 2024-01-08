@@ -21,6 +21,8 @@ export class HomeComponent {
   platos : number = 0;
   users : number = 0;
   bar : number = 0;
+  user: any;
+  platosbar: number=0;
 
   
   list: Reserva[] = [];
@@ -38,8 +40,12 @@ export class HomeComponent {
 
    
   ngOnInit(): void {
+    this.user = this.userService.getCurrentUser();
     this.menuService.getList().subscribe((data)=>{  
       this.platos = data.length;              
+    })   
+    this.menuService.getListBar(this.user.id_bar).subscribe((data:any)=>{       
+      this.platosbar = data.length;      
     })   
     this.userService.getList().subscribe((data)=>{  
       this.users = data.length;              
@@ -91,7 +97,6 @@ export class HomeComponent {
   }
 
   cancelar(reserva: Reserva){
-    console.log(reserva);
     reserva.estado = 'Cancelado'
       const idReserva = reserva.id_reserva ?? -1;
       this.ReservaService.updateestado(idReserva, reserva).subscribe(() => {
@@ -100,7 +105,6 @@ export class HomeComponent {
   }
 
   entregado(reserva: Reserva){
-    console.log(reserva);
     reserva.estado = 'Entregado'
       const idReserva = reserva.id_reserva ?? -1;
       this.ReservaService.updateestado(idReserva, reserva).subscribe(() => {
@@ -110,7 +114,6 @@ export class HomeComponent {
   }
 
   private proceso30min(reserva: Reserva) {
-    console.log(reserva)
     if (reserva.estado == 'Pendiente'){ 
       reserva.estado = 'Cancelado'
       const idReserva = reserva.id_reserva ?? -1;
