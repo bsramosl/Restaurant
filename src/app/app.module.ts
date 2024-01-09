@@ -20,10 +20,8 @@ import { AddEditUsuariosComponent } from './pages/add-edit-usuarios/add-edit-usu
 import { MapComponent } from './pages/map/map.component';
 
 import { TableModule } from 'primeng/table';
+ 
 
-  
-
-import { GoogleMapsModule } from '@angular/google-maps';
 import { EmpleadoComponent } from './pages/empleado/empleado.component';
 import { AddEditEmpleadoComponent } from './pages/add-edit-empleado/add-edit-empleado.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
@@ -64,7 +62,6 @@ import { BufferToImagePipe } from 'app/pages/buffer-to-image.pipe'
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule, 
-    GoogleMapsModule,
     TableModule,
   ],
   providers: [],
