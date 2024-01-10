@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MenuService } from 'app/services/menu/menu.service';
 import { Menu } from '../../models/menu';
 import { UserService } from '@app/services/user/user.service';
+import { environment } from 'environments/environment';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class MenuComponent {
   user: any;
   list: Menu[] = [];
   loading: boolean = false;
+  env = environment.endpoint; 
 
   constructor(private menuService: MenuService,private userService: UserService) { }
 
