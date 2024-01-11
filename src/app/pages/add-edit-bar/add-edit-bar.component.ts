@@ -56,7 +56,7 @@ export class AddEditBarComponent implements OnInit {
       merienda_horario: ['', Validators.required], 
       latitud:['', Validators.required],
       longitud:['', Validators.required],
-      imagen:['',]
+      imagen:['']
     });
 
     this.barService.getCoordinates().subscribe(coordinates => {

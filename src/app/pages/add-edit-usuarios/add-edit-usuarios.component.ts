@@ -38,7 +38,6 @@ export class AddEditUsuariosComponent implements OnInit {
 
     this.form = this.fb.group(formGroupConfig);
 
-    this.form = this.fb.group(formGroupConfig);
     if (this.id !=0){
       this.operacion = 'Editar '
       this.get(this.id);
@@ -63,7 +62,6 @@ export class AddEditUsuariosComponent implements OnInit {
     this.loading = true;
     this.userService.get(id).subscribe((data:Usuario)=>{
       this.loading = false; 
-      console.log(data);
       this.form.setValue(data)
     })    
   } 
@@ -78,11 +76,9 @@ export class AddEditUsuariosComponent implements OnInit {
       this.userService.update(this.id, user).subscribe(()=>{       
         this.loading = false;  
         this.router.navigate(['usuario']); 
-      })
-      
+      })      
     }else{
       this.userService.registerUser(user).subscribe(()=>{
-        this.loading = false;    
         this.loading = false;  
         this.router.navigate(['usuario']); 
     }) 

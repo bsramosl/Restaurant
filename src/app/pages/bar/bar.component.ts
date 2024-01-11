@@ -25,7 +25,6 @@ export class BarComponent {
     this.loading = true;
     this.barService.getList().subscribe((data: Bar[])=>{
       this.list = data;
-      console.log(data);
       this.loading = false;
     })
 

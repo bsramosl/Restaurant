@@ -28,7 +28,6 @@ export class UserService {
   
   delete(id:number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
-
   } 
 
   get(id: number): Observable<Usuario>{

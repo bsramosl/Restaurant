@@ -7,7 +7,8 @@ import { Reserva } from '../../models/reserva';
 @Injectable({
   providedIn: 'root'
 })
-export class ReservaService { private myAppUrl: string;
+export class ReservaService { 
+  private myAppUrl: string;
   private myApiUrl: string;
 
   constructor(private http: HttpClient) {
@@ -25,8 +26,7 @@ export class ReservaService { private myAppUrl: string;
   }
 
   save(reserva: Reserva):Observable<void>{
-    return this.http.post<void>
-    (`${this.myAppUrl}${this.myApiUrl}`,reserva)
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`,reserva)
   }
 
   get(id: number): Observable<Reserva>{
