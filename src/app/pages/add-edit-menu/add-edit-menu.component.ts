@@ -32,7 +32,7 @@ export class AddEditMenuComponent implements OnInit {
       descripcion:[null, Validators.required],
       precio:[null, Validators.required],
       estado:[null, Validators.required],
-      foto:[null, Validators.required],
+      foto:[''],
 
     });
     this.id = Number(aRouter.snapshot.paramMap.get('id'));

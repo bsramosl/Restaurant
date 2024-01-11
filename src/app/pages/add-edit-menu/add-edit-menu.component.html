@@ -57,14 +57,14 @@
                       class="custom-file-input"
                     />
                     <label class="custom-file-label">
-                      {{ form.get('foto')?.value || 'Choose file' }}
+                      {{ form.get('foto')?.value?.name || 'Choose file' }}
                     </label>
                   </div>               
                 </div>
               </div>
               <div class="row mt-2 text-center"> 
                   <div class="col-lg-6">
-                      <button  [disabled]="!form.valid" type="submit" class="btn btn-primary">Aceptar</button>
+                      <button type="submit" class="btn btn-primary">Aceptar</button>
                   </div>
                   <div class="col-lg-6">
                       <button routerLink="/menu" type="button" class="btn btn-secondary">Cancelar</button>

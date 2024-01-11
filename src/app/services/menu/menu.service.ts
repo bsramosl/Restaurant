@@ -38,7 +38,7 @@ export class MenuService {
     formData.append('descripcion', product.descripcion);
     formData.append('precio', product.precio.toString());
     formData.append('estado', product.estado); 
-    formData.append('imagen', image);
+    formData.append('foto', image);
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, formData);
   }
  
@@ -55,7 +55,7 @@ export class MenuService {
     formData.append('descripcion', product.descripcion);
     formData.append('precio', product.precio.toString());
     formData.append('estado', product.estado); 
-    formData.append('imagen', image);
+    formData.append('foto', image);
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, formData)
   }
 }

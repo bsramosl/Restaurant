@@ -20,8 +20,6 @@ export class RecuperarComponent {
       email: ['', [Validators.required, Validators.email]],
     });
     this.origin = window.location.origin;
-    console.log(this.origin)
-
   }
 
   submit() {
