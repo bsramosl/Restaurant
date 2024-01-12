@@ -35,7 +35,9 @@ export class AddEditEmpleadoComponent implements OnInit {
       usuario: [null],
       nombre: [null],
       apellido: [null],
-      estado: ['Activo']
+      estado: ['Activo'],
+      id_tipo_usuario: [2],
+      id_usuario:['']
     });
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
   }
@@ -74,6 +76,7 @@ export class AddEditEmpleadoComponent implements OnInit {
         nombre: selectedUser.nombre,
         apellido: selectedUser.apellido,
         usuario: selectedUser.usuario,
+        id_usuario: selectedUser.id_usuario
         // Agrega más campos según sea necesario
       });
     } else {    
