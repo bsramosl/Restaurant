@@ -68,7 +68,7 @@ export class HomeComponent {
 
   getList(){
     this.ReservaService.getList().subscribe((data: Reserva[])=>{
-      this.list = data;
+      this.list = data.filter(res => res.estado === 'Pendiente' ); 
       this.actualizarTiempoRestante(); 
     }) 
   }

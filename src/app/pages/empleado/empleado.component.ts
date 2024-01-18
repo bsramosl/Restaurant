@@ -30,7 +30,7 @@ export class EmpleadoComponent {
   getListProducts(){
     this.loading = true;
     this.empleadoService.getList().subscribe((data: EmpleadoBar[])=>{
-      this.list = data.filter(bar => bar.id_bar === this.user.id_bar);;
+      this.list = data.filter(bar => bar.id_bar === this.user.id_bar);
       console.log(data);
       this.loading = false;
     })

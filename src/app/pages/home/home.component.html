@@ -50,7 +50,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>{{ platos }}</h3>
+            <h3>{{ platosbar }}</h3>
             <p>Platos</p>
           </div>
           <div class="icon">
@@ -187,7 +187,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-res>
-          <tr *ngIf="res.estado != 'Cancelado'">
+          <tr>
             <td>{{ res.id_reserva }}</td>
             <td>{{ res.nombre }} {{ res.apellido }}</td>
             <td>{{ res.fecha_reserva | date : "yyyy-MM-dd" }}</td>
