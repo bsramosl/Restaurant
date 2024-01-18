@@ -3,6 +3,7 @@ import { BarService } from 'app/services/bar/bar.service';
 import { Bar } from '../../models/bar';
 import { MensajeService } from '@app/services/mensaje/mensaje.service';
 import { environment } from 'environments/environment';
+import { UserService } from '@app/services/user/user.service';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
@@ -13,18 +14,22 @@ export class BarComponent {
   list: Bar[] = [];
   loading: boolean = false;
   env = environment.endpoint; 
+  user: any;
 
-  constructor(private barService: BarService,private mensajeService: MensajeService,) { }
+
+  constructor(private barService: BarService,private mensajeService: MensajeService,
+    private userService: UserService) { }
 
    
   ngOnInit(): void {
+    this.user = this.userService.getCurrentUser();
     this.getListProducts();   
   }
 
   getListProducts(){
     this.loading = true;
     this.barService.getList().subscribe((data: Bar[])=>{
-      this.list = data;
+      this.list = data.filter(bar => bar.id_bar === this.user.id_bar);
       this.loading = false;
     })
 

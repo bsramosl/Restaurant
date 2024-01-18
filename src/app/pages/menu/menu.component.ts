@@ -28,7 +28,7 @@ export class MenuComponent {
   getListProducts(){
     this.loading = true;
     this.menuService.getList().subscribe((data: Menu[])=>{
-      this.list = data;
+      this.list = data.filter(bar => bar.id_bar === this.user.id_bar);;
       console.log(data);
       this.loading = false;
     })

@@ -11,9 +11,9 @@ import { ReservaService } from 'app/services/reserva/reserva.service';
 })
 export class AddEditReservaComponent implements OnInit {
   form!: FormGroup;
-  formControls: string[] = ['id_menu', 'fecha_reserva', 'estado', 'codigo_estado', 'comentario'];
+  formControls: string[] = [ 'fecha_reserva', 'estado', 'codigo_estado', 'comentario'];
   inputType: { [key: string]: string } = {
-    'id_menu': 'text',
+  
     'fecha_reserva': 'text',
     'estado': 'text',
     'codigo_estado': 'number',
@@ -49,7 +49,7 @@ export class AddEditReservaComponent implements OnInit {
     this.form = this.fb.group({
       id_reserva: ['', Validators.required],
       id_usuario: ['', Validators.required],
-      id_menu: ['', Validators.required],
+     
       fecha_reserva: [''],
       estado: ['', Validators.required],
       codigo_estado: [''],
