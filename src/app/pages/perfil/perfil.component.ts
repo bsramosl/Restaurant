@@ -32,6 +32,8 @@ export class PerfilComponent implements OnInit {
     direccion: [''],
     telefono: [''],
     id_ciudad : [''],
+    id_pais : [''],
+    id_provincia : [''],
     id_tipo_usuario: ['']
   });
     this.user = this.userService.getCurrentUser(); 
@@ -45,7 +47,7 @@ export class PerfilComponent implements OnInit {
     const user = this.form.value;
     if(this.id !==0){    
       this.userService.update(this.id, user).subscribe(()=>{       
-        this.router.navigate(['perfil']); 
+        this.router.navigate(['']); 
       })
     } 
   }
