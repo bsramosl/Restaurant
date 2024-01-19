@@ -59,6 +59,7 @@ export interface TipoUsuario {
     id_reserva?: number;
     id_usuario?: number;
     id_menu?: number;
+    id_bar?: number;
     fecha_reserva: Date;
     estado?: string;
     codigo_estado?: string;
